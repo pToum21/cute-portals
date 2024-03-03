@@ -22,6 +22,7 @@ export function Ghost(props) {
       <group name="Scene">
         <group name="CharacterArmature">
           <primitive object={nodes.Root} />
+          {/* ghost mesh */}
           <skinnedMesh name="Ghost" geometry={nodes.Ghost.geometry} material={materials.Atlas} skeleton={nodes.Ghost.skeleton} />
         </group>
       </group>
