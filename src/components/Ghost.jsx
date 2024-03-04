@@ -11,6 +11,7 @@ export function Ghost(props) {
   const { nodes, materials, animations } = useGLTF('/models/Ghost.gltf')
   const { actions } = useAnimations(animations, group)
 
+  // idle animation
   useEffect(() => {
     actions["Flying_Idle"].reset().fadeIn(0.5).play();
     return () => actions["Flying_Idle"].fadeOut(0.5)
