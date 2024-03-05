@@ -17,6 +17,7 @@ export function Ghost(props) {
     return () => actions["Flying_Idle"].fadeOut(0.5)
   }, [])
 
+  // show all actions in browser can be removed later useful for now
   console.log(actions)
   return (
     <group ref={group} {...props} dispose={null}>
