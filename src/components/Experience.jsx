@@ -17,8 +17,8 @@ export const Experience = () => {
       <MonsterStage texture={"textures/Anime_equirectangular-jpg_snowy_forest_with_big_909903919_10321818.jpg"}>
         <Ghost scale={0.6} position-y={-1} />
       </MonsterStage>
-
-      <MonsterStage texture={"textures/Anime_equirectangular-jpg_desert_sand_dunes_world_1355661936_10321814.jpg"}>
+      {/* water frog */}
+      <MonsterStage texture={"textures/Anime_equirectangular-jpg_water_world_664462261_10321798.jpg"}>
         <Ghost scale={0.6} position-y={-1} />
       </MonsterStage>
     </>
