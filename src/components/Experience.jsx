@@ -21,11 +21,12 @@ export const Experience = () => {
       >
         <Ghost scale={0.6} position-y={-1} />
       </MonsterStage>
-      {/* snow penguin */}
+      {/* snow yeti */}
       <MonsterStage
         texture={"textures/Anime_equirectangular-jpg_snowy_forest_with_big_909903919_10321818.jpg"}
         position-x={-2.5}
         rotation-y={Math.PI / 8}
+        // yetis name that displays as text
         name={"Drunk Yeti"}
         color={"#8abbc9"}
       >
