@@ -4,6 +4,8 @@ import { Ghost } from "./Ghost";
 import { Yeti } from "./Yeti";
 import { Frog } from "./Frog";
 import { useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
 
 
 export const Experience = () => {
@@ -56,6 +58,12 @@ export const Experience = () => {
 const MonsterStage = ({ children, texture, name, color, active, setActive, ...props }) => {
   const map = useTexture(texture);
 
+  const portalMaterial = useRef();
+
+  useFrame(() => {
+
+  })
+
   const handleDoubleClick = () => {
     setActive(active === name ? null : name);
   };
@@ -72,7 +80,7 @@ const MonsterStage = ({ children, texture, name, color, active, setActive, ...pr
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
       <RoundedBox args={[2, 3, 0.1]} onDoubleClick={handleDoubleClick}>
-        <MeshPortalMaterial side={THREE.DoubleSide} blend={active === name ? 1 : 0}>
+        <MeshPortalMaterial side={THREE.DoubleSide} ref={portalMaterial}>
           <ambientLight intensity={1} />
           <Environment preset="sunset" />
           {children}
