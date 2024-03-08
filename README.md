@@ -21,7 +21,7 @@ This project uses Three.js and Yarn
 Please run yarn install and yarn dev.
 
 ## Preview Photo - 📸
-
+![monster portal preview image](https://github.com/pToum21/cute-portals/assets/138056441/1879a917-3462-43d0-a500-4fdbde4dabd7)
 
 ## Deployed Application - 📲
 https://monster-portals.netlify.app/
