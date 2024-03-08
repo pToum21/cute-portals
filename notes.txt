@@ -1,1 +1,6 @@
-need to make the portals cliackable to load into that specific world 
+TODO NOTES
+
+* Change animations of the characters to be cooler then just idel pose like maybe when you click on them they do something else
+
+
+* need to make the portals cliackable to load into that specific world 
