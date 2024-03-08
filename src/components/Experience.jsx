@@ -1,10 +1,10 @@
-import { Environment, MeshPortalMaterial, OrbitControls, RoundedBox, useTexture, Text } from "@react-three/drei";
+import { Environment, MeshPortalMaterial, OrbitControls, RoundedBox, useTexture, Text, CameraControls } from "@react-three/drei";
 import * as THREE from "three"
 import { Ghost } from "./Ghost";
 import { Yeti } from "./Yeti";
 import { Frog } from "./Frog";
-import { useState } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useEffect, useState } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import { easing } from "maath";
 
@@ -12,11 +12,42 @@ import { easing } from "maath";
 export const Experience = () => {
   const [active, setActive] = useState(null);
 
+  const controlsRef = useRef();
+
+  const scene = useThree((state) => state.scene);
+
+  useEffect(() => {
+    if (active) {
+      const targetPostition = new THREE.Vector3();
+      scene.getObjectByName(active).getWorldPosition(targetPostition);
+      controlsRef.current.setLookAt(
+        0,
+        0,
+        5,
+        targetPostition.x,
+        targetPostition.y,
+        targetPostition.z,
+        true,
+      )
+
+    } else {
+      controlsRef.current.setLookAt(
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        true,
+      )
+    }
+  }, [active]);
+
   return (
     <>
       <ambientLight intensity={0.5} />
       <Environment preset="sunset" />
-      <OrbitControls />
+      <CameraControls ref={controlsRef} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 6} />
       {/* desert ghost */}
       <MonsterStage
         texture={"textures/Anime_equirectangular-jpg_desert_sand_dunes_world_1355661936_10321814.jpg"}
@@ -81,7 +112,7 @@ const MonsterStage = ({ children, texture, name, color, active, setActive, ...pr
         {name}
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
-      <RoundedBox args={[2, 3, 0.1]} onDoubleClick={handleDoubleClick}>
+      <RoundedBox name={name} args={[2, 3, 0.1]} onDoubleClick={handleDoubleClick}>
         <MeshPortalMaterial side={THREE.DoubleSide} ref={portalMaterial}>
           <ambientLight intensity={1} />
           <Environment preset="sunset" />
