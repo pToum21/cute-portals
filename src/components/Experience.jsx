@@ -1,4 +1,4 @@
-import { Environment, MeshPortalMaterial, OrbitControls, RoundedBox, useTexture, Text, CameraControls } from "@react-three/drei";
+import { Environment, MeshPortalMaterial, OrbitControls, RoundedBox, useTexture, Text, CameraControls, useCursor } from "@react-three/drei";
 import * as THREE from "three"
 import { Ghost } from "./Ghost";
 import { Yeti } from "./Yeti";
@@ -13,6 +13,8 @@ export const Experience = () => {
   const [active, setActive] = useState(null);
 
   const [hovered, setHovered] = useState(null);
+
+  useCursor(hovered);
 
   const controlsRef = useRef();
 
@@ -60,7 +62,7 @@ export const Experience = () => {
         hovered={hovered}
         setHovered={setHovered}
       >
-        <Ghost scale={0.6} position-y={-1} hovered={hovered === "Messy Ghost"}/>
+        <Ghost scale={0.6} position-y={-1} hovered={hovered === "Messy Ghost"} />
       </MonsterStage>
       {/* snow yeti */}
       <MonsterStage
@@ -75,7 +77,7 @@ export const Experience = () => {
         hovered={hovered}
         setHovered={setHovered}
       >
-        <Yeti scale={0.6} position-y={-1} hovered={hovered === "Drunk Yeti"}/>
+        <Yeti scale={0.6} position-y={-1} hovered={hovered === "Drunk Yeti"} />
       </MonsterStage>
       {/* water frog */}
       <MonsterStage
@@ -89,7 +91,7 @@ export const Experience = () => {
         hovered={hovered}
         setHovered={setHovered}
       >
-        <Frog scale={0.6} position-y={-1} hovered={hovered === "Dart Frog"}/>
+        <Frog scale={0.6} position-y={-1} hovered={hovered === "Dart Frog"} />
       </MonsterStage>
     </>
   );
