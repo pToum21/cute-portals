@@ -4,3 +4,5 @@ TODO NOTES
 
 
 * need to make the portals cliackable to load into that specific world 
+
+* when the user double clicks it should open the world
