@@ -24,7 +24,7 @@ Please run yarn install and yarn dev.
 
 
 ## Deployed Application - 📲
-
+https://monster-portals.netlify.app/
 
 ## Questions - ❓
 Feel Free to contact me at:
