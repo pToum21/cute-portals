@@ -55,6 +55,11 @@ export const Experience = () => {
 
 const MonsterStage = ({ children, texture, name, color, active, setActive, ...props }) => {
   const map = useTexture(texture);
+
+  const handleDoubleClick = () => {
+    setActive(active === name ? null : name);
+  };
+
   return (
     <group {...props}>
       <Text
@@ -66,8 +71,8 @@ const MonsterStage = ({ children, texture, name, color, active, setActive, ...pr
         {name}
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
-      <RoundedBox args={[2, 3, 0.1]} onDoubleClick={setActive(active === name ? null : name)}>
-        <MeshPortalMaterial side={THREE.DoubleSide}>
+      <RoundedBox args={[2, 3, 0.1]} onDoubleClick={handleDoubleClick}>
+        <MeshPortalMaterial side={THREE.DoubleSide} blend={active === name ? 1 : 0}>
           <ambientLight intensity={1} />
           <Environment preset="sunset" />
           {children}
@@ -80,4 +85,3 @@ const MonsterStage = ({ children, texture, name, color, active, setActive, ...pr
     </group>
   );
 };
-
