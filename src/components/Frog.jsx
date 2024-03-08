@@ -18,7 +18,6 @@ export function Frog({hovered, ...props}) {
     return () => actions[anim].fadeOut(0.5)
   }, [hovered])
 
-  console.log(actions)
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">

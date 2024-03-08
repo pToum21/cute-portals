@@ -18,8 +18,6 @@ export function Ghost({ hovered, ...props }) {
     return () => actions[anim].fadeOut(0.5)
   }, [hovered])
 
-  // show all actions in browser can be removed later useful for now
-  console.log(actions)
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
