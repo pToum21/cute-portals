@@ -3,10 +3,11 @@ import * as THREE from "three"
 import { Ghost } from "./Ghost";
 import { Yeti } from "./Yeti";
 import { Frog } from "./Frog";
+import { useState } from "react";
 
 
 export const Experience = () => {
-
+  const [active, setActive] = useState(null);
 
   return (
     <>
@@ -18,6 +19,8 @@ export const Experience = () => {
         texture={"textures/Anime_equirectangular-jpg_desert_sand_dunes_world_1355661936_10321814.jpg"}
         name={"Messy Ghost"}
         color={"#290f2e"}
+        active={active}
+        setActive={setActive}
       >
         <Ghost scale={0.6} position-y={-1} />
       </MonsterStage>
@@ -29,6 +32,8 @@ export const Experience = () => {
         // yetis name that displays as text
         name={"Drunk Yeti"}
         color={"#8abbc9"}
+        active={active}
+        setActive={setActive}
       >
         <Yeti scale={0.6} position-y={-1} />
       </MonsterStage>
@@ -39,6 +44,8 @@ export const Experience = () => {
         rotation-y={-Math.PI / 8}
         name={"Dart Frog"}
         color={"#cfad35"}
+        active={active}
+        setActive={setActive}
       >
         <Frog scale={0.6} position-y={-1} />
       </MonsterStage>
@@ -46,7 +53,7 @@ export const Experience = () => {
   );
 };
 
-const MonsterStage = ({ children, texture, name, color, ...props }) => {
+const MonsterStage = ({ children, texture, name, color, active, setActive, ...props }) => {
   const map = useTexture(texture);
   return (
     <group {...props}>
@@ -59,7 +66,7 @@ const MonsterStage = ({ children, texture, name, color, ...props }) => {
         {name}
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
-      <RoundedBox args={[2, 3, 0.1]}>
+      <RoundedBox args={[2, 3, 0.1]} onDoubleClick={setActive(active === name ? null : name)}>
         <MeshPortalMaterial side={THREE.DoubleSide}>
           <ambientLight intensity={1} />
           <Environment preset="sunset" />
