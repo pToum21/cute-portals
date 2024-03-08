@@ -6,6 +6,7 @@ import { Frog } from "./Frog";
 import { useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
+import { easing } from "maath";
 
 
 export const Experience = () => {
@@ -60,8 +61,9 @@ const MonsterStage = ({ children, texture, name, color, active, setActive, ...pr
 
   const portalMaterial = useRef();
 
-  useFrame(() => {
-
+  useFrame((_state, delta) => {
+    const worldOpen = active === name;
+    easing.damp(portalMaterial.current, 'blend', worldOpen ? 1 : 0, 0.2, delta);
   })
 
   const handleDoubleClick = () => {
