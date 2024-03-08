@@ -12,6 +12,8 @@ import { easing } from "maath";
 export const Experience = () => {
   const [active, setActive] = useState(null);
 
+  const [hovered, setHovered] = useState(null);
+
   const controlsRef = useRef();
 
   const scene = useThree((state) => state.scene);
@@ -55,8 +57,10 @@ export const Experience = () => {
         color={"#290f2e"}
         active={active}
         setActive={setActive}
+        hovered={hovered}
+        setHovered={setHovered}
       >
-        <Ghost scale={0.6} position-y={-1} />
+        <Ghost scale={0.6} position-y={-1} hovered={hovered === "Messy Ghost"}/>
       </MonsterStage>
       {/* snow yeti */}
       <MonsterStage
@@ -68,8 +72,10 @@ export const Experience = () => {
         color={"#8abbc9"}
         active={active}
         setActive={setActive}
+        hovered={hovered}
+        setHovered={setHovered}
       >
-        <Yeti scale={0.6} position-y={-1} />
+        <Yeti scale={0.6} position-y={-1} hovered={hovered === "Drunk Yeti"}/>
       </MonsterStage>
       {/* water frog */}
       <MonsterStage
@@ -80,14 +86,16 @@ export const Experience = () => {
         color={"#cfad35"}
         active={active}
         setActive={setActive}
+        hovered={hovered}
+        setHovered={setHovered}
       >
-        <Frog scale={0.6} position-y={-1} />
+        <Frog scale={0.6} position-y={-1} hovered={hovered === "Dart Frog"}/>
       </MonsterStage>
     </>
   );
 };
 
-const MonsterStage = ({ children, texture, name, color, active, setActive, ...props }) => {
+const MonsterStage = ({ children, texture, name, color, active, setActive, hovered, setHovered, ...props }) => {
   const map = useTexture(texture);
 
   const portalMaterial = useRef();
@@ -112,7 +120,13 @@ const MonsterStage = ({ children, texture, name, color, active, setActive, ...pr
         {name}
         <meshBasicMaterial color={color} toneMapped={false} />
       </Text>
-      <RoundedBox name={name} args={[2, 3, 0.1]} onDoubleClick={handleDoubleClick}>
+      <RoundedBox
+        name={name}
+        args={[2, 3, 0.1]}
+        onDoubleClick={handleDoubleClick}
+        onPointerEnter={() => setHovered(name)}
+        onPointerLeave={() => setHovered(null)}
+      >
         <MeshPortalMaterial side={THREE.DoubleSide} ref={portalMaterial}>
           <ambientLight intensity={1} />
           <Environment preset="sunset" />

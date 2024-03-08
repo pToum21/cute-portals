@@ -6,16 +6,17 @@ Command: npx gltfjsx@6.2.16 public/models/Ghost.gltf -o src/components/Ghost.jsx
 import React, { useEffect, useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 
-export function Ghost(props) {
+export function Ghost({ hovered, ...props }) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/Ghost.gltf')
   const { actions } = useAnimations(animations, group)
 
   // idle animation
   useEffect(() => {
-    actions["Flying_Idle"].reset().fadeIn(0.5).play();
-    return () => actions["Flying_Idle"].fadeOut(0.5)
-  }, [])
+    const anim = hovered ? "Headbutt" : "Flying_Idle"
+    actions[anim].reset().fadeIn(0.5).play();
+    return () => actions[anim].fadeOut(0.5)
+  }, [hovered])
 
   // show all actions in browser can be removed later useful for now
   console.log(actions)
