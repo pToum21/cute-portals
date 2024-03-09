@@ -7,6 +7,7 @@ import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import { useEffect } from 'react'
 
+// plays diffrenet animation when hovered
 export function Frog({hovered, ...props}) {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('/models/Frog.gltf')
