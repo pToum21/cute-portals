@@ -31,4 +31,5 @@ export function Frog({hovered, ...props}) {
   )
 }
 
+// export the gltf model for preloading
 useGLTF.preload('/models/Frog.gltf')
